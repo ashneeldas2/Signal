@@ -22,4 +22,5 @@ int main() {
         printf("The process number is: %d\n", getpid());
         sleep(1);
     }
+    return 0;
 }
