@@ -2,10 +2,14 @@
 #include <stdlib.h>
 #include <signal.h>
 #include <unistd.h>
+#include <fcntl.h>
 
 static void sighandler(int signo) {
     if (signo == SIGINT) {
-        printf("I've been interrupted!! oh no!!!\n");
+        int fd = open("log.txt", O_CREAT | O_WRONLY | O_APPEND, 0644);
+        char errmessage[34] = "I've been interrupted!! oh no!!!\n";
+        write(fd, errmessage, sizeof(errmessage));
+        close(fd);
         exit(1);
     }
 
